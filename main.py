@@ -1,5 +1,6 @@
 import openpyxl as op
 import json
+from PySimpleGUI import PySimpleGUI as sg
 
 def createSpreadSheetAndRecords(name = 'teste', values = []):
     book = op.Workbook()
@@ -33,11 +34,37 @@ def generateDatas(records):
         ])
     return datas
 
-with open('values.json', encoding='utf-8') as values:
-    records = json.load(values)
+def fileGenerate(file_name):
+    with open('values.json', encoding='utf-8') as data:
+        records = json.load(data)
 
-result = generateDatas(records=records)
+    result = generateDatas(records=records)
 
-print(result)
+    print(result)
 
-createSpreadSheetAndRecords(values = result)
+    createSpreadSheetAndRecords(name=file_name, values = result)
+
+
+sg.theme('Reddit')
+
+layout = [
+    [sg.Text('nome do arquivo'), sg.Input(key='file_name')],
+    [sg.Button('Gerar Arquivo')]
+]
+
+page = sg.Window('Gerar arquivo', layout)
+
+while True:
+    events, values = page.read()
+
+    if events == sg.WINDOW_CLOSED:
+        break
+
+    if events == 'Gerar Arquivo':
+        print(values)
+        if values['file_name'] == '' or values['file_name'] is None:
+            sg.popup_error('Ih rapaz... tem que adicionar um nome para o arquivo ai :sad_pepe:')
+        else:
+            fileGenerate(file_name=values['file_name'])
+            break
+>>>>>>> front
