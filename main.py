@@ -67,4 +67,3 @@ while True:
         else:
             fileGenerate(file_name=values['file_name'])
             break
->>>>>>> front
