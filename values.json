@@ -1,0 +1,18 @@
+[
+    {
+        "client": "cod_client",
+        "method": "method",
+        "amount": {
+            "currency": "BRL",
+            "value": 10
+        }
+    },
+    {
+        "client": "cod_client_2",
+        "method": "method_2",
+        "amount": {
+            "currency": "BRL",
+            "value": 12
+        }
+    }
+]
